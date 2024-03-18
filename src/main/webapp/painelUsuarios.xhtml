@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Página com PrimeFaces</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:panel header="Formulário de Cadastro" style="width: 100%;">
+            <p:row>
+                <p:column colspan="2">
+                    <h3>Dados da Pessoa</h3>
+                </p:column>
+            </p:row>
+            
+            <h:panelGrid columns="4" style="width: 100%;">
+                <h:panelGrid columns="1" style="width: 100%;">
+                    <h:outputLabel for="id" value="ID:" style="width: 100%;" />
+                    <p:inputText id="id" value="#{bean.id}" disabled="true" style="width: 100%;" />
+                </h:panelGrid>
+                <h:panelGrid columns="1" style="width: 100%;">
+                    <h:outputLabel for="nome" value="Nome:" style="width: 100%;" />
+                    <p:inputText id="nome" value="#{bean.nome}" style="width: 100%;" />
+                </h:panelGrid>
+
+                <h:panelGrid columns="1" style="width: 100%;">
+                    <h:outputLabel for="sexo" value="Sexo:" style="width: 100%;" />
+                    <p:selectOneMenu id="sexo" value="#{bean.sexo}" style="width: 100%;">
+                        <f:selectItem itemLabel="Selecione" itemValue="" />
+                        <f:selectItem itemLabel="Feminino" itemValue="FM" />
+                        <f:selectItem itemLabel="Masculino" itemValue="MC" />
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                
+                <h:panelGrid columns="1" style="width: 100%;">
+                    <h:outputLabel for="idade" value="Data Nascimento:" />
+                    <p:calendar id="idade" value="#{bean.idade}" style="width: 100%;" />
+                </h:panelGrid>
+            </h:panelGrid>
+            <p:row>
+                <p:column colspan="2">
+                    <h3>Endereço</h3>
+                </p:column>
+            </p:row>
+            <h:panelGrid columns="4" style="width: 100%;">
+                <h:panelGrid columns="1" style="width: 100%;">
+                    <h:outputLabel for="estado" value="Estado:" style="width: 100%;" />
+                    <p:inputText id="estado" value="#{bean.estado}" style="width: 100%;" />
+                </h:panelGrid>
+                <h:panelGrid columns="1" style="width: 100%;">
+                    <h:outputLabel for="cidade" value="Cidade:" style="width: 100%;" />
+                    <p:inputText id="cidade" value="#{bean.cidade}" style="width: 100%;" />
+                </h:panelGrid>
+                <h:panelGrid columns="1" style="width: 100%;">
+                    <h:outputLabel for="logradouro" value="Logradouro:" style="width: 100%;" />
+                    <p:inputText id="logradouro" value="#{bean.logradouro}" style="width: 100%;" />
+                </h:panelGrid>
+                <h:panelGrid columns="1" style="width: 100%;">
+                    <h:outputLabel for="numero" value="Número:" style="width: 100%;" />
+                    <p:inputText id="numero" value="#{bean.numero}" style="width: 100%;" />
+                </h:panelGrid>
+                <h:panelGrid columns="1" style="width: 100%;">
+                    <h:outputLabel for="cep" value="CEP:" style="width: 100%;" />
+                    <p:inputText id="cep" value="#{bean.cep}" style="width: 100%;" />
+                </h:panelGrid>
+            </h:panelGrid>
+            
+            <p:spacer height="5" />
+            <p:commandButton value="Salvar" action="#{bean.salvar}" style="width: 100%;" />
+            <p:spacer height="5" />
+            <p:commandButton value="Limpar" type="reset" styleClass="ui-button-warning" style="width: 100%;" />
+        </p:panel>
+        
+        
+        <p:panel header="Tabela de Dados" style="width: 100%; margin-top: 20px;">
+            <p:dataTable var="item" value="#{bean.listaItens}">
+                <p:column headerText="ID">
+                    <h:outputText value="#{item.id}" />
+                </p:column>
+                <p:column headerText="Nome">
+                    <h:outputText value="#{item.nome}" />
+                </p:column>
+                <p:column headerText="Endereço">
+                    <h:outputText value="#{item.endereco}" />
+                </p:column>
+                <p:column>
+                    <p:commandButton value="Editar" action="#{bean.editarItem(item)}" />
+                </p:column>
+                <p:column>
+                    <p:commandButton value="Excluir" action="#{bean.excluirItem(item)}" />
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+        
+    </h:form>
+</h:body>
+</html>
